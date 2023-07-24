@@ -3,6 +3,8 @@ import { createAuthUserWithEmailAndPassword, createUserDocFromAuth } from "../..
 import FormInput from "../form-input/form-input.component";
 import './sign-up-form.styles.scss'
 import Button from "../button/button.component";
+import { useContext } from "react";
+import { UserContest } from "../context/user.context";
 const SignUpForm = () => {
   const defaultFormFeild = {
     displayName: "",
@@ -28,6 +30,7 @@ const SignUpForm = () => {
     try{
         const {user} = await createAuthUserWithEmailAndPassword(email,password)
         const userDocRef=await createUserDocFromAuth(user,{displayName})
+
         resetFormField()
     }
     catch(error){
